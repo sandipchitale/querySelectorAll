@@ -71,6 +71,7 @@
             content: counter(line) " ";
             -webkit-user-select: none;
             user-select: none;
+            line-height: 1rem;
         }
 
         a {
@@ -97,8 +98,8 @@
             grid-area: toolbar;
             display: grid;
             column-gap: 10px;
-            grid-template-columns: 1fr auto auto;
-            justify-content: center;
+            grid-template-columns: minMax(auto, 40rem) auto;
+            justify-content: left;
         }
 
         .grid-query-selector-all-header {
@@ -125,11 +126,11 @@
 <body>
     <div class="wrapper">
         <div class="grid-toolbar">
-            <input  id="query-slector-all-selector" type="search" size="1" placeholder="Enter selector for querySelectorAll">
+            <input  id="query-slector-all-selector" type="search" size="1" placeholder="Enter CSS selector for querySelectorAll">
             <button id="query-slector-all-button" title="Run querySelectorAll">&#128269;</button>
-            <button id="clear" title="clear">&#9003</button>
+
         </div>
-        <h3  class="grid-query-selector-all-header">querySelectorAll results</h3>
+        <h3  class="grid-query-selector-all-header">querySelectorAll results <button id="clear" title="clear">&#9003</button></h3>
         <div class="grid-query-selector-all">
             <pre id="query-selector-all"></pre>
         </div>
