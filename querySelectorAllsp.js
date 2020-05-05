@@ -36,6 +36,9 @@
                 let inspectAnchorArray = Array.prototype.slice.call(inspectAnchors);
                 inspectAnchorArray.forEach((inspectAnchor) => {
                     inspectAnchor.onclick = inspect.bind(inspectAnchor, querySelectorAllSelector, inspectAnchor.getAttribute('element-ordinal'));
+                    inspectAnchor.onmouseenter = highlight.bind(inspectAnchor, querySelectorAllSelector, inspectAnchor.getAttribute('element-ordinal'));
+                    inspectAnchor.onmouseleave = unhighlight.bind(inspectAnchor, querySelectorAllSelector, inspectAnchor.getAttribute('element-ordinal'));
+
                 });
             }
         });
@@ -55,6 +58,18 @@
     }
 
     clearButton.onclick = clear;
+
+    function highlight(selector, ordinal) {
+        const highlightExpression = `document.querySelectorAll('${selector}').item(${ordinal}).style.outline = '1px solid red';`;
+        chrome.devtools.inspectedWindow.eval(highlightExpression, {}, (returnedValue, returnStatus) => {
+        });
+    }
+
+    function unhighlight(selector, ordinal) {
+        const unhighlightExpression = `document.querySelectorAll('${selector}').item(${ordinal}).style.outline = 'inherit';`;
+        chrome.devtools.inspectedWindow.eval(unhighlightExpression, {}, (returnedValue, returnStatus) => {
+        });
+    }
 
     function inspect(selector, ordinal) {
         const inspectExpression = `inspect(document.querySelectorAll('${selector}').item(${ordinal}))`;
