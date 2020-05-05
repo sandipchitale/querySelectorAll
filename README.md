@@ -2,7 +2,7 @@
 
 ## Chrome Web Store URL
 
-[querySelectorAll](https://chrome.google.com/webstore/detail/querySelectorAll/?)
+[querySelectorAll](https://chrome.google.com/webstore/detail/queryselectorall/pdlkbaojmankilmcnolgoijamiemliia?hl=en)
 
 Chrome Devtools Elements side panel to show results of querySelectorAll.
 
