@@ -1,6 +1,6 @@
 {
     "name": "querySelectorAll",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Chrome Devtools Elements querySelectorAll side panel.",
     "icons": {
         "128": "icon_128.png"

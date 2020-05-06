@@ -60,13 +60,13 @@
     clearButton.onclick = clear;
 
     function highlight(selector, ordinal) {
-        const highlightExpression = `document.querySelectorAll('${selector}').item(${ordinal}).style.outline = '1px solid red';`;
+        const highlightExpression = `document.querySelectorAll('${selector}').item(${ordinal}).style.boxShadow = '0 0 20px red';`;
         chrome.devtools.inspectedWindow.eval(highlightExpression, {}, (returnedValue, returnStatus) => {
         });
     }
 
     function unhighlight(selector, ordinal) {
-        const unhighlightExpression = `document.querySelectorAll('${selector}').item(${ordinal}).style.outline = 'inherit';`;
+        const unhighlightExpression = `document.querySelectorAll('${selector}').item(${ordinal}).style.boxShadow = 'inherit';`;
         chrome.devtools.inspectedWindow.eval(unhighlightExpression, {}, (returnedValue, returnStatus) => {
         });
     }
@@ -108,4 +108,12 @@
         }
         return (i + 'th').padStart(6);
     }
+
+    chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+        if (tabId === chrome.devtools.inspectedWindow.tabId) {
+            if (changeInfo.status === 'loading') {
+                clear();
+            }
+        }
+    });
 })();
